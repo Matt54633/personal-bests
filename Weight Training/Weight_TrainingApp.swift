@@ -15,6 +15,6 @@ struct Weight_TrainingApp: App {
             ContentView()
                 .tint(.blue)
         }
-        .modelContainer(for: [Exercise.self, Workout.self])
+        .modelContainer(for: [Exercise.self, Workout.self, CustomCategory.self])
     }
 }

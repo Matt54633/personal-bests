@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct WorkoutForm: View {
     @Binding var category: String
     @Binding var exercises: [Exercise]
     @Binding var workoutLength: Int
+    @Query private var customCategories: [CustomCategory]
+    @State private var customCategoriesAdded = false
     
     @StateObject private var workoutCategories = WorkoutCategories()
     @State private var lengths: [Int] = [15, 30, 45, 60, 75, 90, 105, 120]
@@ -43,6 +46,12 @@ struct WorkoutForm: View {
                 .modifier(TextInputField())
             }
             
+        }
+        .onAppear {
+            if !customCategoriesAdded {
+                updateWorkoutCategories()
+                customCategoriesAdded = true
+            }
         }
         .padding(.bottom, 20)
         VStack() {
@@ -81,6 +90,11 @@ struct WorkoutForm: View {
         .navigationTitle("Workout")
         .padding(.bottom, 25)
         Spacer()
+    }
+    
+    func updateWorkoutCategories() {
+        let customCategoryNames = customCategories.map { $0.self.categoryName }
+        workoutCategories.all += customCategoryNames
     }
 }
 

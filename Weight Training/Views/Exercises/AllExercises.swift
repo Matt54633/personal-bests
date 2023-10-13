@@ -57,7 +57,7 @@ struct AllExercises: View {
     }
 
     var categories: [String] {
-        Array(Set(exercises.map { $0.category }))
+        Array(Set(exercises.map { $0.category }).sorted())
     }
 
     func filteredExercises(for category: String) -> [Exercise] {

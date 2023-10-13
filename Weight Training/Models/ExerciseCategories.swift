@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftData
 
 class ExerciseCategories: ObservableObject {
     @Published var all: [String] = ["Chest", "Back", "Legs", "Biceps", "Core", "Cardio", "Triceps", "Shoulders"]

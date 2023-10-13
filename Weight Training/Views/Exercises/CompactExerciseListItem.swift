@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CompactExerciseListItem: View {
+    @AppStorage("weightUnit") var weightUnit: String = ""
     var exercise: Exercise
     let formatter = NumberFormatter.decimalFormatter(decimalPlaces: 2)
     
@@ -26,7 +27,7 @@ struct CompactExerciseListItem: View {
                 .font(.system(size: 14))
             }
             Spacer()
-            Text("\(formatter.string(from: NSNumber(value: exercise.weightLifted)) ?? "Nil")kg")
+            Text("\(formatter.string(from: NSNumber(value: exercise.weightLifted)) ?? "Nil")\(weightUnit)")
                 .font(.title2)
                 .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 .fontDesign(.rounded)

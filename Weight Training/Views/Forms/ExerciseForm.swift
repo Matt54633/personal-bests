@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ExerciseForm: View {
     @Binding var exerciseName: String
@@ -15,7 +16,8 @@ struct ExerciseForm: View {
     @Binding var category: String
     @Binding var info: String
     @StateObject private var exerciseCategories = ExerciseCategories()
-    
+    @Query private var customCategories: [CustomCategory]
+
     var body: some View {
         Spacer()
         HStack {
@@ -36,6 +38,9 @@ struct ExerciseForm: View {
                 TextField("0", value: $weightLifted, format: .number)
                     .modifier(TextInputField())
             }
+        }
+        .onAppear {
+            updateWorkoutCategories()
         }
         .padding(.bottom, 15)
         
@@ -89,6 +94,11 @@ struct ExerciseForm: View {
         .navigationTitle("Exercise")
         .padding(.bottom, 25)
         Spacer()
+    }
+    
+    func updateWorkoutCategories() {
+        let customCategoryNames = customCategories.map { $0.categoryName }
+        exerciseCategories.all += customCategoryNames
     }
 }
 

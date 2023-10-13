@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct TabsView: View {
+    @AppStorage("userName") var name: String = ""
+    
     var body: some View {
         TabView {
             PersonalBestList()
@@ -24,6 +26,16 @@ struct TabsView: View {
                 .tabItem {
                     Label("Exercises", systemImage: "figure.run")
                         .foregroundStyle(.blue)
+                }
+            ProfileView()
+                .tabItem {
+                    if !name.isEmpty {
+                        Label(name, systemImage: "person.fill")
+                            .foregroundStyle(.blue)
+                    } else {
+                        Label("Profile", systemImage: "person.fill")
+                            .foregroundStyle(.blue)
+                    }
                 }
         }
     }
