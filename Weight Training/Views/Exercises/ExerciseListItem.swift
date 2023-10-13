@@ -11,7 +11,7 @@ struct ExerciseListItem: View {
     @AppStorage("weightUnit") var weightUnit: String = ""
     var exercise: Exercise
     let formatter = NumberFormatter.decimalFormatter(decimalPlaces: 2)
-        
+    
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
@@ -27,7 +27,7 @@ struct ExerciseListItem: View {
                 }
             }
             Spacer()
-            Text("\(formatter.string(from: NSNumber(value: exercise.weightLifted)) ?? "Nil")\(weightUnit)")
+            Text(String(format: "%.0f", exercise.weightLifted) + weightUnit)
                 .font(.largeTitle)
                 .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 .fontDesign(.rounded)
@@ -35,7 +35,3 @@ struct ExerciseListItem: View {
         }
     }
 }
-
-//#Preview {
-//    ExerciseListItem()
-//}

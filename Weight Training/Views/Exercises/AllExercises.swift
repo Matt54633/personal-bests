@@ -11,9 +11,9 @@ import SwiftData
 struct AllExercises: View {
     @Environment(\.modelContext) private var context
     @Query(sort: \Exercise.creationDate, order: .reverse) private var exercises: [Exercise]
-
+    
     @State private var searchText = ""
-
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -55,11 +55,11 @@ struct AllExercises: View {
         }
         .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic))
     }
-
+    
     var categories: [String] {
         Array(Set(exercises.map { $0.category }).sorted())
     }
-
+    
     func filteredExercises(for category: String) -> [Exercise] {
         if searchText.isEmpty {
             return exercises.filter { $0.category == category }
@@ -69,7 +69,7 @@ struct AllExercises: View {
             }
         }
     }
-
+    
     func filteredCategories() -> [String] {
         return categories.filter { category in
             filteredExercises(for: category).count > 0

@@ -58,7 +58,7 @@ struct ProfileStats: View {
                 }
                 .padding(.top, -10)
             }
-
+            
             if !exercises.isEmpty {
                 Text("Exercises by Category:")
                     .font(.title3)

@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ProfileSettings: View {
     @AppStorage("weightUnit") var weightUnit: String = "kg"
     @State private var selectedUnit = "kg"
+    @Query private var exercises: [Exercise]
     
     var body: some View {
         List {
@@ -38,6 +40,7 @@ struct ProfileSettings: View {
             .onChange(of: selectedUnit, initial: true) { oldValue, newValue in
                 if newValue != oldValue {
                     weightUnit = newValue
+                    convertWeights()
                 }
             }
             .onAppear {
@@ -46,6 +49,20 @@ struct ProfileSettings: View {
         }
         .navigationTitle("Settings")
     }
+    
+    func convertWeights() {
+        if selectedUnit == "kg" {
+            for exercise in exercises {
+                exercise.weightLifted /= 2.20462
+            }
+        }
+        else {
+            for exercise in exercises {
+                exercise.weightLifted *= 2.20462
+            }
+        }
+    }
+    
 }
 
 #Preview {
