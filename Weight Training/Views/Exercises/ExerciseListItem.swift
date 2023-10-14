@@ -27,11 +27,18 @@ struct ExerciseListItem: View {
                 }
             }
             Spacer()
-            Text(String(format: "%.0f", exercise.weightLifted) + weightUnit)
+            Text(formatWeight(exercise.weightLifted) + weightUnit)
                 .font(.largeTitle)
                 .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 .fontDesign(.rounded)
                 .foregroundStyle(.blue)
         }
+    }
+    
+    func formatWeight(_ weight: Float) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.minimumFractionDigits = 0
+        numberFormatter.maximumFractionDigits = weight.truncatingRemainder(dividingBy: 1) == 0 ? 0 : 1
+        return numberFormatter.string(from: NSNumber(value: weight)) ?? "Nil"
     }
 }

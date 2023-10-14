@@ -53,12 +53,12 @@ struct ProfileSettings: View {
     func convertWeights() {
         if selectedUnit == "kg" {
             for exercise in exercises {
-                exercise.weightLifted /= 2.20462
+                exercise.weightLifted = Float(exercise.weightLifted / 2.20462).rounded(.towardZero)
             }
         }
         else {
             for exercise in exercises {
-                exercise.weightLifted *= 2.20462
+                exercise.weightLifted = Float(exercise.weightLifted * 2.20462).rounded(.towardZero)
             }
         }
     }
