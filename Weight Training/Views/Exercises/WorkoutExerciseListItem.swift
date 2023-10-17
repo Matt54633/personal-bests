@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CompactExerciseListItem: View {
+struct WorkoutExerciseListItem: View {
     @AppStorage("weightUnit") var weightUnit: String = ""
     var exercise: Exercise
     let formatter = NumberFormatter.decimalFormatter(decimalPlaces: 2)
@@ -17,6 +17,7 @@ struct CompactExerciseListItem: View {
             VStack(alignment: .leading) {
                 HStack {
                     Text(exercise.exerciseName)
+                        .font(.title3)
                         .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                         .fontDesign(.rounded)
                 }
@@ -24,15 +25,26 @@ struct CompactExerciseListItem: View {
                     Text("Sets: \(exercise.sets)")
                     Text("Reps: \(exercise.reps)")
                 }
-                .font(.system(size: 14))
             }
             Spacer()
-            Text("\(formatter.string(from: NSNumber(value: exercise.weightLifted)) ?? "Nil")\(weightUnit)")
-                .font(.title2)
+            Text(formatWeight(exercise.weightLifted) + weightUnit)
+                .font(.largeTitle)
                 .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 .fontDesign(.rounded)
                 .foregroundStyle(.blue)
         }
+        if let exerciseInfo = exercise.info {
+            if exerciseInfo != "" {
+                Text(exerciseInfo)
+            }
+        }
+    }
+    
+    func formatWeight(_ weight: Float) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.minimumFractionDigits = 0
+        numberFormatter.maximumFractionDigits = weight.truncatingRemainder(dividingBy: 1) == 0 ? 0 : 1
+        return numberFormatter.string(from: NSNumber(value: weight)) ?? "Nil"
     }
 }
 

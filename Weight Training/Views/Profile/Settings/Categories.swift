@@ -8,8 +8,8 @@
 import SwiftUI
 import SwiftData
 
-struct ProfileCategories: View {
-    @Query private var customCategories: [CustomCategory]
+struct ManageCategories: View {
+    @Query private var categories: [Category]
     @State private var categoryName: String = ""
     @Environment(\.modelContext) private var context
     
@@ -20,7 +20,6 @@ struct ProfileCategories: View {
                     TextField("e.g. Core", text: $categoryName)
                         .modifier(TextInputField())
                         .frame(maxWidth: .infinity)
-                    
                     Button(action: {
                         addCategory(categoryName: categoryName, context: context)
                         categoryName = ""
@@ -32,10 +31,10 @@ struct ProfileCategories: View {
                     .buttonStyle(.borderedProminent)
                 }
             }
-            .navigationTitle("Custom Categories")
+            .navigationTitle("Manage Categories")
             .padding()
             List {
-                ForEach(customCategories, id: \.self) { category in
+                ForEach(categories, id: \.self) { category in
                     Text(category.categoryName)
                         .swipeActions {
                             Button("Delete") {
@@ -51,5 +50,5 @@ struct ProfileCategories: View {
 }
 
 #Preview {
-    ProfileCategories()
+    ManageCategories()
 }

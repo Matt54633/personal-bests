@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct ProfileSettings: View {
+struct Settings: View {
     @AppStorage("weightUnit") var weightUnit: String = "kg"
     @State private var selectedUnit = "kg"
     @Query private var exercises: [Exercise]
@@ -17,12 +17,12 @@ struct ProfileSettings: View {
         List {
             NavigationLink(
                 destination:
-                    ProfileCategories()
+                    ManageCategories()
             ) {
                 Image(systemName: "circle.grid.2x2")
                     .font(.system(size: 20, design: .rounded))
                     .foregroundStyle(.blue)
-                Text("Custom Categories")
+                Text("Manage Categories")
             }
             HStack {
                 Image(systemName: "scalemass.fill")
@@ -66,5 +66,5 @@ struct ProfileSettings: View {
 }
 
 #Preview {
-    ProfileSettings()
+    Settings()
 }
