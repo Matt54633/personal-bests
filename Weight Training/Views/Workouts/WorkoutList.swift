@@ -18,29 +18,32 @@ struct WorkoutList: View {
         NavigationStack {
             VStack(alignment: .leading) {
                 if !workouts.isEmpty {
-                    Picker("Filter by Time", selection: $selectedMonth) {
-                        Text("This Week").tag("This Week")
-                        Text("All Time").tag("All")
-                        ForEach(uniqueMonths().sorted(), id: \.self) { month in
-                            Text(month).tag("\(month)")
-                        }
-                    }
-                    .labelsHidden()
-                    .pickerStyle(.menu)
-                    .background(RoundedRectangle(cornerSize: CGSize(width: 100, height: 100)).fill(.blue.opacity(0.2)))
-                    .padding(EdgeInsets(top: 5, leading: 15, bottom: 00, trailing: 0))
                     List {
-                        ForEach(filteredWorkouts().sorted(by: { $0.date > $1.date }), id: \.id) { workout in
-                            NavigationLink(
-                                destination: EditWorkout(workout: workout)
-                            ) {
-                                WorkoutListItem(workout: workout)
-                                    .swipeActions {
-                                        Button("Delete") {
-                                            deleteWorkout(workout: workout, context: context)
+                        Section(header: Picker("Filter by Time", selection: $selectedMonth) {
+                            Text("This Week").tag("This Week")
+                            Text("All Time").tag("All")
+                            ForEach(uniqueMonths().sorted(), id: \.self) { month in
+                                Text(month).tag("\(month)")
+                            }
+                        }
+                            .padding(-6.5)
+                            .padding(.horizontal, -7.5)
+                            .modifier(CategoryTag())
+                            .pickerStyle(.menu)
+                        )
+                        {
+                            ForEach(filteredWorkouts().sorted(by: { $0.date > $1.date }), id: \.id) { workout in
+                                NavigationLink(
+                                    destination: EditWorkout(workout: workout)
+                                ) {
+                                    WorkoutListItem(workout: workout)
+                                        .swipeActions {
+                                            Button("Delete") {
+                                                deleteWorkout(workout: workout, context: context)
+                                            }
+                                            .tint(.red)
                                         }
-                                        .tint(.red)
-                                    }
+                                }
                             }
                         }
                     }
@@ -78,7 +81,7 @@ struct WorkoutList: View {
         
         if selectedMonth == "This Week" && !searchText.isEmpty {
             return workouts.filter { workout in
-                let workoutMonth = dateFormatter.string(from: workout.date)
+                _ = dateFormatter.string(from: workout.date)
                 return workout.category.localizedCaseInsensitiveContains(searchText) &&
                 workout.date >= startOfWeek! && workout.date <= endOfWeek!
             }

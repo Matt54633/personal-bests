@@ -79,7 +79,6 @@ struct BlueButtonStyle: ViewModifier {
         content
             .font(.system(size: 20, design: .rounded))
             .foregroundStyle(.blue)
-            .buttonStyle(.bordered)
-            .buttonBorderShape(.circle)
+            .padding(0)
     }
 }

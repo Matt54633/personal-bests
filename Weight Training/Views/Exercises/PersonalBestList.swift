@@ -35,7 +35,7 @@ struct PersonalBestList: View {
                         }
                     }
                 }
-                .searchable(text: $searchText) // Add the searchable modifier here
+                .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic))
             }
             .navigationTitle("Personal Bests")
             .toolbar {

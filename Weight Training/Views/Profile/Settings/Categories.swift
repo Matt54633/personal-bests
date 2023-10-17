@@ -27,6 +27,7 @@ struct Categories: View {
                         Image(systemName: "plus")
                             .frame(height: 30)
                     }
+                    .disabled(categoryName.isEmpty)
                     .buttonBorderShape(.roundedRectangle(radius: 10.0))
                     .buttonStyle(.borderedProminent)
                 }
@@ -34,7 +35,7 @@ struct Categories: View {
             .navigationTitle("Categories")
             .padding()
             List {
-                ForEach(categories, id: \.self) { category in
+                ForEach(categories.sorted(by: { $0.categoryName < $1.categoryName }), id: \.self) { category in
                     Text(category.categoryName)
                         .swipeActions {
                             Button("Delete") {
