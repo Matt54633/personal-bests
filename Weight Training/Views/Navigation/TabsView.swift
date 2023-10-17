@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct TabsView: View {
+    @Environment(\.modelContext) private var context
     @AppStorage("userName") var name: String = ""
-    
+    @AppStorage("weightUnit") var weightUnit: String = ""
+
     var body: some View {
         TabView {
             PersonalBestList()
@@ -37,6 +39,21 @@ struct TabsView: View {
                             .foregroundStyle(.blue)
                     }
                 }
+        }
+        .onAppear {
+            if !UserDefaults.standard.bool(forKey: "DefaultCategoriesPublished") {
+                publishDefaultData()
+                UserDefaults.standard.set(true, forKey: "DefaultCategoriesPublished")
+            }
+        }
+    }
+    
+    func publishDefaultData() {
+        weightUnit = "kg"
+
+        let categories = ["Push", "Pull", "Lower", "Upper", "Chest", "Back", "Legs", "Biceps", "Core", "Cardio", "Triceps", "Shoulders"]
+        for categoryName in categories {
+            addCategory(categoryName: categoryName, context: context)
         }
     }
 }

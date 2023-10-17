@@ -10,7 +10,7 @@ import Foundation
 import SwiftData
 
 @Model
-final class CustomCategory: Identifiable {
+final class Category: Identifiable {
     var id: String
     var categoryName: String
     
@@ -21,10 +21,10 @@ final class CustomCategory: Identifiable {
 }
 
 func addCategory(categoryName: String, context: ModelContext) {
-    let category = CustomCategory(categoryName: categoryName)
+    let category = Category(categoryName: categoryName)
     context.insert(category)
 }
 
-func deleteCategory(category: CustomCategory, context: ModelContext) {
+func deleteCategory(category: Category, context: ModelContext) {
     context.delete(category)
 }

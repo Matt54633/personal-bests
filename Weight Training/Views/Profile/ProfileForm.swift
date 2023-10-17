@@ -14,16 +14,17 @@ struct ProfileForm: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Create Profile")
-                .modifier(TitleText())
+            Spacer()
             VStack(alignment: .leading) {
                 Text("Please enter your name:")
-                    .modifier(TextInputTitle())
+                    .font(.title)
+                    .fontDesign(.default)
+                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 TextField("e.g. Ben", text: $name)
                     .modifier(TextInputField())
             }
             .frame(maxWidth: .infinity)
-            Spacer(minLength: 20)
+            Spacer()
             Button(action: {
                 dismiss()
             }) {
@@ -35,7 +36,8 @@ struct ProfileForm: View {
             .disabled(name.isEmpty)
         }
         .padding()
-        .presentationDetents([.height(250)])
+        .presentationDetents([.height(225)])
+        .presentationDragIndicator(.visible)
     }
 }
 

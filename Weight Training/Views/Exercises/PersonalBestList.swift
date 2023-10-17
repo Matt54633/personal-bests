@@ -45,9 +45,8 @@ struct PersonalBestList: View {
                             CreateExercise()
                     ) {
                         Image(systemName: "plus")
-                            .font(.system(size: 20, design: .rounded))
-                            .foregroundStyle(.blue)
                     }
+                    .modifier(BlueButtonStyle())
                 }
             }
         }

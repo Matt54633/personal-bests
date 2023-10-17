@@ -25,6 +25,11 @@ struct WorkoutExerciseListItem: View {
                     Text("Sets: \(exercise.sets)")
                     Text("Reps: \(exercise.reps)")
                 }
+                if let exerciseInfo = exercise.info {
+                    if exerciseInfo != "" {
+                        Text("Info: \(exerciseInfo)")
+                    }
+                }
             }
             Spacer()
             Text(formatWeight(exercise.weightLifted) + weightUnit)
@@ -33,11 +38,7 @@ struct WorkoutExerciseListItem: View {
                 .fontDesign(.rounded)
                 .foregroundStyle(.blue)
         }
-        if let exerciseInfo = exercise.info {
-            if exerciseInfo != "" {
-                Text(exerciseInfo)
-            }
-        }
+        .padding(.leading, -15)
     }
     
     func formatWeight(_ weight: Float) -> String {

@@ -16,7 +16,17 @@ struct ProfileView: View {
         NavigationStack {
             VStack(alignment: .leading) {
                 List {
-                    ProfileStats()
+                    Section(header: Text("Stats").modifier(CategoryTag())) {
+                        OverallStats()
+                    }
+                    Section {
+                        WorkoutCategorised()
+                            .listRowSeparator(.hidden)
+                    }
+                    Section {
+                        ExerciseCategoried()
+                            .listRowSeparator(.hidden)
+                    }
                 }
             }
             .sheet(isPresented: $displaySheet, content: {
@@ -32,12 +42,11 @@ struct ProfileView: View {
                 ToolbarItem {
                     NavigationLink(
                         destination:
-                            ProfileSettings()
+                            Settings()
                     ) {
                         Image(systemName: "gear")
-                            .font(.system(size: 20, design: .rounded))
-                            .foregroundStyle(.blue)
                     }
+                    .modifier(BlueButtonStyle())
                 }
             }
         }

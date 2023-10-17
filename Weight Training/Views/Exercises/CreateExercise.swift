@@ -15,7 +15,7 @@ struct CreateExercise: View {
     @State private var weightLifted: Float = 0
     @State private var sets: Int = 3
     @State private var reps: Int = 12
-    @State private var category: String = ""
+    @State private var category: String = "Chest"
     @State private var info: String = ""
     
     var body: some View {
@@ -38,9 +38,6 @@ struct CreateExercise: View {
             .buttonStyle(.borderedProminent)
             .tint(.blue)
             .disabled(exerciseName.isEmpty || category.isEmpty)
-        }
-        .onAppear {
-            category = "Chest"
         }
         .padding()
     }

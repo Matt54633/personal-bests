@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct ManageCategories: View {
+struct Categories: View {
     @Query private var categories: [Category]
     @State private var categoryName: String = ""
     @Environment(\.modelContext) private var context
@@ -31,7 +31,7 @@ struct ManageCategories: View {
                     .buttonStyle(.borderedProminent)
                 }
             }
-            .navigationTitle("Manage Categories")
+            .navigationTitle("Categories")
             .padding()
             List {
                 ForEach(categories, id: \.self) { category in
@@ -50,5 +50,5 @@ struct ManageCategories: View {
 }
 
 #Preview {
-    ManageCategories()
+    Categories()
 }

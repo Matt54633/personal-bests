@@ -13,11 +13,13 @@ struct TextInputField: ViewModifier {
     
     func body(content: Content) -> some View {
         content
+            .textInputAutocapitalization(.words)
             .tint(.blue)
             .frame(height: 35)
             .padding(5)
-            .background(RoundedRectangle(cornerRadius: 10).fill(colorScheme == .dark ? .quaternary : .quinary)
-            )
+            .padding(.horizontal, 7.5)
+            .background(RoundedRectangle(cornerRadius: 10).fill(colorScheme == .dark ? .quaternary : .quinary))
+            .submitLabel(.done)
     }
 }
 
@@ -35,9 +37,7 @@ struct TitleText: ViewModifier {
         content
             .font(.largeTitle)
             .fontWeight(.bold)
-            .fontDesign(.rounded)
-            .foregroundStyle(.blue)
-            .padding(.bottom, 15)
+            .multilineTextAlignment(/*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/)
     }
 }
 
@@ -52,7 +52,7 @@ struct CategoryTag: ViewModifier {
             .fontWeight(.bold)
             .background(
                 RoundedRectangle(cornerRadius: 100)
-                    .fill(Color.blue.opacity(colorScheme == .dark ? 0.2 : 0.125))
+                    .fill(.blue.opacity(colorScheme == .dark ? 0.25 : 0.125))
             )
             .padding(.vertical, 10)
             .foregroundStyle(.blue)
@@ -69,5 +69,17 @@ struct SaveButtonText: ViewModifier {
             .fontWeight(.bold)
             .frame(maxWidth: .infinity)
             .padding(2.5)
+    }
+}
+
+struct BlueButtonStyle: ViewModifier {
+    @Environment(\.colorScheme) var colorScheme
+
+    func body(content: Content) -> some View {
+        content
+            .font(.system(size: 20, design: .rounded))
+            .foregroundStyle(.blue)
+            .buttonStyle(.bordered)
+            .buttonBorderShape(.circle)
     }
 }
