@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WidgetKit
 
 struct CreateExercise: View {
     @Environment(\.modelContext) private var context
@@ -30,6 +31,7 @@ struct CreateExercise: View {
             )
             Button(action: {
                 addExercise(exerciseName: exerciseName, weightLifted: weightLifted, sets: sets, reps: reps, category: category, info: info, context: context)
+                WidgetCenter.shared.reloadAllTimelines()
                 dismiss()
             }) {
                 Text("Save")

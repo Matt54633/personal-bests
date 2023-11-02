@@ -34,6 +34,7 @@
 		76746B802ACEB76E006A22B1 /* ExerciseListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76746B7F2ACEB76E006A22B1 /* ExerciseListItem.swift */; };
 		76746B822ACEF806006A22B1 /* CustomModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76746B812ACEF806006A22B1 /* CustomModifiers.swift */; };
 		76746B852ACF02E9006A22B1 /* EditExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76746B842ACF02E9006A22B1 /* EditExercise.swift */; };
+		767793BD2AF3F0E2004ED182 /* SelectExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767793BC2AF3F0E2004ED182 /* SelectExercise.swift */; };
 		76943C0E2ACF4D3D0050035D /* WorkoutListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76943C0D2ACF4D3D0050035D /* WorkoutListItem.swift */; };
 		76943C102ACF62010050035D /* AllExercises.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76943C0F2ACF62010050035D /* AllExercises.swift */; };
 		76E495902ACF3F200090BB50 /* WorkoutList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E4958F2ACF3F200090BB50 /* WorkoutList.swift */; };
@@ -41,6 +42,19 @@
 		76E495942ACF40C10090BB50 /* CreateWorkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E495932ACF40C10090BB50 /* CreateWorkout.swift */; };
 		76E495962ACF47F70090BB50 /* CreateWorkoutExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E495952ACF47F70090BB50 /* CreateWorkoutExercise.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		767793DA2AF3F509004ED182 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		764380D52AD01C3E006954AA /* WorkoutExerciseListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutExerciseListItem.swift; sourceTree = "<group>"; };
@@ -73,6 +87,9 @@
 		76746B7F2ACEB76E006A22B1 /* ExerciseListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListItem.swift; sourceTree = "<group>"; };
 		76746B812ACEF806006A22B1 /* CustomModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModifiers.swift; sourceTree = "<group>"; };
 		76746B842ACF02E9006A22B1 /* EditExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExercise.swift; sourceTree = "<group>"; };
+		767793BC2AF3F0E2004ED182 /* SelectExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectExercise.swift; sourceTree = "<group>"; };
+		767793C42AF3F507004ED182 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		767793C62AF3F507004ED182 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		76943C0D2ACF4D3D0050035D /* WorkoutListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutListItem.swift; sourceTree = "<group>"; };
 		76943C0F2ACF62010050035D /* AllExercises.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllExercises.swift; sourceTree = "<group>"; };
 		76E4958F2ACF3F200090BB50 /* WorkoutList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutList.swift; sourceTree = "<group>"; };
@@ -144,6 +161,7 @@
 				76746B842ACF02E9006A22B1 /* EditExercise.swift */,
 				76943C0F2ACF62010050035D /* AllExercises.swift */,
 				764380D52AD01C3E006954AA /* WorkoutExerciseListItem.swift */,
+				767793BC2AF3F0E2004ED182 /* SelectExercise.swift */,
 			);
 			path = Exercises;
 			sourceTree = "<group>";
@@ -179,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				76746B662ACEB0A8006A22B1 /* Weight Training */,
+				767793C32AF3F507004ED182 /* Frameworks */,
 				76746B652ACEB0A8006A22B1 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -246,6 +265,15 @@
 			path = Styles;
 			sourceTree = "<group>";
 		};
+		767793C32AF3F507004ED182 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				767793C42AF3F507004ED182 /* WidgetKit.framework */,
+				767793C62AF3F507004ED182 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -256,6 +284,7 @@
 				76746B602ACEB0A8006A22B1 /* Sources */,
 				76746B612ACEB0A8006A22B1 /* Frameworks */,
 				76746B622ACEB0A8006A22B1 /* Resources */,
+				767793DA2AF3F509004ED182 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -323,6 +352,7 @@
 				766535A42AD4433200C0D4B7 /* NumberFormatExtension.swift in Sources */,
 				766535A22AD425DB00C0D4B7 /* DateExtension.swift in Sources */,
 				76746B6C2ACEB0A8006A22B1 /* Exercise.swift in Sources */,
+				767793BD2AF3F0E2004ED182 /* SelectExercise.swift in Sources */,
 				76746B802ACEB76E006A22B1 /* ExerciseListItem.swift in Sources */,
 				764F28A52AD94F950086D034 /* Settings.swift in Sources */,
 				764C81A02ADE92570087D184 /* HideKeyboard.swift in Sources */,
@@ -497,7 +527,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.2.2;
+				MARKETING_VERSION = 1.2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "matt54633.Weight-Training";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -538,7 +568,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.2.2;
+				MARKETING_VERSION = 1.2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "matt54633.Weight-Training";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;

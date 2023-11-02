@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WidgetKit
 
 struct CreateWorkout: View {
     @Environment(\.modelContext) private var context
@@ -18,6 +19,7 @@ struct CreateWorkout: View {
         VStack(alignment: .leading) {
             WorkoutForm(category: $category, exercises: $exercises, workoutLength: $workoutLength)
             Button(action: {
+                WidgetCenter.shared.reloadAllTimelines()
                 addWorkout(exercises: exercises, category: category, workoutLength: workoutLength, context: context)
                 dismiss()
             }) {

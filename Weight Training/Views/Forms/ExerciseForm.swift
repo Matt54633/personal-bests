@@ -16,6 +16,9 @@ struct ExerciseForm: View {
     @Binding var category: String
     @Binding var info: String
     @Query private var categories: [Category]
+    @Query private var exercises: [Exercise]
+    @State private var displaySheet: Bool = false
+    @State private var selectedExercise: Exercise?
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -24,11 +27,24 @@ struct ExerciseForm: View {
                 VStack(alignment: .leading) {
                     Text("Exercise Name:")
                         .modifier(TextInputTitle())
-                    TextField("e.g. Bench Press", text: $exerciseName)
-                        .modifier(TextInputField())
+                    HStack {
+                        TextField("e.g. Bench Press", text: $exerciseName)
+                            .modifier(TextInputField())
+                        Button(action: {
+                            displaySheet = true
+                        }) {
+                            Image(systemName: "chevron.down")
+                                .frame(height: 30)
+                        }
+                        .buttonBorderShape(.roundedRectangle(radius: 10.0))
+                        .buttonStyle(.borderedProminent)
+                        .sheet(isPresented: $displaySheet) {
+                            SelectExercise(displaySheet: $displaySheet, selectedExercise: $selectedExercise)
+                        }
+                    }
                 }
                 .frame(maxWidth: .infinity)
-                .frame(width: UIScreen.main.bounds.width * 0.60)
+                .frame(width: UIScreen.main.bounds.width * 0.65)
                 Spacer(minLength: 20)
                 
                 VStack(alignment: .leading) {
@@ -98,6 +114,15 @@ struct ExerciseForm: View {
                     .modifier(TextInputField())
             }
             .padding(.bottom, 25)
+        }
+        .onChange(of: selectedExercise) {
+            if let selectedExercise = selectedExercise {
+                exerciseName = selectedExercise.exerciseName
+                weightLifted = selectedExercise.weightLifted
+                sets = selectedExercise.sets
+                reps = selectedExercise.reps
+                category = selectedExercise.category
+            }
         }
         .navigationTitle("Exercise")
     }
