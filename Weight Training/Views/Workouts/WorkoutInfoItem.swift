@@ -37,7 +37,3 @@ struct WorkoutInfoItem: View {
         .offset(y: 12.5)
     }
 }
-
-//#Preview {
-//    WorkoutInfoItem()
-//}

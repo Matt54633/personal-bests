@@ -28,7 +28,7 @@ struct TextInputTitle: ViewModifier {
         content
             .fontWeight(.bold)
             .fontDesign(.rounded)
-            .font(.system(size: 18))
+            .font(.system(size: 17))
     }
 }
 
@@ -64,11 +64,12 @@ struct CategoryTag: ViewModifier {
 struct SaveButtonText: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .font(.title2)
+            .font(.title3)
             .fontDesign(.rounded)
             .fontWeight(.bold)
             .frame(maxWidth: .infinity)
             .padding(2.5)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 }
 
@@ -80,5 +81,16 @@ struct BlueButtonStyle: ViewModifier {
             .font(.system(size: 20, design: .rounded))
             .foregroundStyle(.blue)
             .padding(0)
+    }
+}
+
+struct WeightTextFieldStyle: TextFieldStyle {
+    var weightUnit: String
+    
+    func _body(configuration: TextField<_Label>) -> some View {
+        HStack {
+            configuration
+            Text(weightUnit)
+        }
     }
 }

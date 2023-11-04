@@ -14,29 +14,28 @@ struct ProfileForm: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Spacer()
-            VStack(alignment: .leading) {
-                Text("Please enter your name:")
-                    .font(.title)
-                    .fontDesign(.default)
-                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+            Text("Please enter your name:")
+                .font(.title)
+                .fontDesign(.default)
+                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+            HStack {
                 TextField("e.g. Ben", text: $name)
                     .modifier(TextInputField())
+                Spacer()
+                Button(action: {
+                    dismiss()
+                }) {
+                    Image(systemName: "checkmark.circle.fill")
+                        .modifier(SaveButtonText())
+                }
+                .frame(width: 60)
+                .buttonStyle(.borderedProminent)
+                .tint(.blue)
+                .disabled(name.isEmpty)
             }
-            .frame(maxWidth: .infinity)
-            Spacer()
-            Button(action: {
-                dismiss()
-            }) {
-                Text("Save")
-                    .modifier(SaveButtonText())
-            }
-            .buttonStyle(.borderedProminent)
-            .tint(.blue)
-            .disabled(name.isEmpty)
         }
-        .padding()
-        .presentationDetents([.height(225)])
+        .padding(.horizontal)
+        .presentationDetents([.height(180)])
         .presentationDragIndicator(.visible)
     }
 }

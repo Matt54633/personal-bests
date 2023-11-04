@@ -17,7 +17,7 @@ struct OverallStats: View {
                 .font(.title3)
                 .fontWeight(.bold)
                 .fontDesign(.rounded)
-                .padding(.top, 10)
+                .padding(.top, 5)
             
             HStack {
                 WorkoutInfoItem(data: String(workouts.count), imageName: "figure.strengthtraining.traditional")

@@ -30,10 +30,3 @@ struct WorkoutListItem: View {
         .padding(.vertical, -7.5)
     }
 }
-
-
-
-//
-//#Preview {
-//    WorkoutListItem()
-//}

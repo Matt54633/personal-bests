@@ -8,11 +8,27 @@
 import SwiftUI
 
 struct CompactExerciseListItem: View {
+    @AppStorage("weightUnit") var weightUnit: String = ""
+    var exercise: Exercise
+    let formatter = NumberFormatter.decimalFormatter(decimalPlaces: 2)
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            Text(exercise.exerciseName)
+            Spacer()
+            Text(formatWeight(exercise.weightLifted) + weightUnit)
+                .font(.title2)
+                .fontWeight(.bold)
+                .fontDesign(.rounded)
+                .foregroundStyle(.blue)
+        }
+    }
+    
+    func formatWeight(_ weight: Float) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.minimumFractionDigits = 0
+        numberFormatter.maximumFractionDigits = weight.truncatingRemainder(dividingBy: 1) == 0 ? 0 : 1
+        return numberFormatter.string(from: NSNumber(value: weight)) ?? "Nil"
     }
 }
 
-#Preview {
-    CompactExerciseListItem()
-}

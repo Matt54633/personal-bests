@@ -14,7 +14,7 @@ struct SelectExercise: View {
     @State private var searchText: String = ""
     @Binding var displaySheet: Bool
     @Binding var selectedExercise: Exercise?
-
+    
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading) {
@@ -22,41 +22,43 @@ struct SelectExercise: View {
                     ForEach(categoriesWithExercises(sorted: categories), id: \.self) { category in
                         Section(header: Text(category).modifier(CategoryTag())) {
                             ForEach(filteredExercises(category: category), id: \.id) { exercise in
-                                    ExerciseListItem(exercise: exercise)
+                                CompactExerciseListItem(exercise: exercise)
                                     .onTapGesture {
                                         selectedExercise = exercise
                                         displaySheet = false
                                     }
-                                }
                             }
                         }
                     }
                 }
-            .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
             }
+            .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
+        }
+        .presentationDetents([.medium])
+        .presentationDragIndicator(.visible)
     }
-
+    
     var categories: [String] {
         return Array(Set(exercises.map { $0.category })).sorted()
     }
-
+    
     func categoriesWithExercises(sorted: [String]) -> [String] {
         return sorted.filter { category in
             return !filteredExercises(category: category).isEmpty
         }
     }
-
+    
     func filteredExercises(category: String) -> [Exercise] {
         let maxWeightExercises = findMaxWeightExercises(category: category)
-
+        
         return maxWeightExercises.filter { exercise in
             return searchText.isEmpty || exercise.exerciseName.localizedCaseInsensitiveContains(searchText)
         }
     }
-
+    
     func findMaxWeightExercises(category: String) -> [Exercise] {
         var maxWeightExercises = [Exercise]()
-
+        
         for exercise in exercises {
             if exercise.category == category {
                 if let existingExercise = maxWeightExercises.first(where: { $0.exerciseName == exercise.exerciseName }) {
@@ -70,7 +72,7 @@ struct SelectExercise: View {
                 }
             }
         }
-
+        
         return maxWeightExercises
     }
 }

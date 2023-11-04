@@ -11,7 +11,7 @@ import WidgetKit
 struct CreateExercise: View {
     @Environment(\.modelContext) private var context
     @Environment(\.dismiss) var dismiss
-
+    
     @State private var exerciseName: String = ""
     @State private var weightLifted: Float = 0
     @State private var sets: Int = 3

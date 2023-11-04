@@ -37,7 +37,3 @@ struct CreateWorkoutExercise: View {
         .padding()
     }
 }
-
-//#Preview {
-//    CreateWorkoutExercise()
-//}

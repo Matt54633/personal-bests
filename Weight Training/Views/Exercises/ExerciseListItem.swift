@@ -25,6 +25,7 @@ struct ExerciseListItem: View {
                     Text("Sets: \(exercise.sets)")
                     Text("Reps: \(exercise.reps)")
                 }
+                
             }
             Spacer()
             Text(formatWeight(exercise.weightLifted) + weightUnit)

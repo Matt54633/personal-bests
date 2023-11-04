@@ -23,11 +23,7 @@ struct EditWorkout: View {
             .buttonStyle(.borderedProminent)
             .tint(.blue)
             .disabled(workout.category.isEmpty)
+            .padding()
         }
-        .padding()
     }
 }
-
-//#Preview {
-//    EditWorkout()
-//}

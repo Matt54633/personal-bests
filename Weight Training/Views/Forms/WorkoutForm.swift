@@ -17,12 +17,12 @@ struct WorkoutForm: View {
     @State private var lengths: [Int] = [15, 30, 45, 60, 75, 90, 105, 120]
     
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack {
             HStack {
                 VStack(alignment: .leading) {
-                    Text("Category:")
+                    Text("Category")
                         .modifier(TextInputTitle())
-                    Picker("Category:", selection: $category) {
+                    Picker("Category", selection: $category) {
                         ForEach(categories.sorted(by: { $0.categoryName < $1.categoryName }), id: \.self) { category in
                             Text(category.categoryName).tag("\(category.categoryName)")
                         }
@@ -33,9 +33,9 @@ struct WorkoutForm: View {
                 }
                 Spacer(minLength: 20)
                 VStack(alignment: .leading) {
-                    Text("Session Length:")
+                    Text("Session Length")
                         .modifier(TextInputTitle())
-                    Picker("Session Length:", selection: $workoutLength) {
+                    Picker("Session Length", selection: $workoutLength) {
                         ForEach(lengths, id: \.self) { length in
                             Text("\(length) minutes").tag(length)
                         }
@@ -46,45 +46,38 @@ struct WorkoutForm: View {
                 }
                 
             }
-            .padding(.bottom, 20)
-            VStack() {
-                HStack(alignment: .bottom) {
-                    Text("Exercises:")
-                        .font(.title2)
-                        .modifier(TextInputTitle())
-                    Spacer()
-                    NavigationLink(
-                        destination:
-                            CreateWorkoutExercise(exercises: $exercises)
-                    ) {
-                        Image(systemName: "plus")
-                     }
-                    .modifier(BlueButtonStyle())
+            .padding(EdgeInsets(top: 15, leading: 15, bottom: 0, trailing: 15))
+            HStack {
+                Text("Exercises")
+                    .font(.title3)
+                    .modifier(TextInputTitle())
+                Spacer()
+                NavigationLink(destination: CreateWorkoutExercise(exercises: $exercises)) {
+                    Image(systemName: "plus")
+                        .frame(width: 20, height: 20)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
                 }
-                if !exercises.isEmpty {
-                    List {
-                        ForEach(exercises, id: \.self) { exercise in
-                            NavigationLink(
-                                destination:
-                                    EditExercise(exercise: exercise)
-                            ) {
-                                WorkoutExerciseListItem(exercise: exercise)
-                            }
-                        }
-                        .onDelete { indexSet in
-                            exercises.remove(atOffsets: indexSet)
-                        }
-                    }
-                    .listStyle(.plain)
+                .font(.title3)
+                .modifier(CategoryTag())
+            }
+            .padding(.bottom, -6)
+            .padding(.horizontal)
+        List {
+            ForEach(exercises, id: \.self) { exercise in
+                NavigationLink(
+                    destination:
+                        EditExercise(exercise: exercise)
+                ) {
+                    WorkoutExerciseListItem(exercise: exercise)
                 }
             }
-            .padding(.bottom, 25)
+            .onDelete { indexSet in
+                exercises.remove(atOffsets: indexSet)
+            }
         }
-        Spacer()
-        .navigationTitle("Workout")
+        
     }
+        .listStyle(.plain)
+        .navigationTitle("Workout")
 }
-
-//#Preview {
-//    WorkoutForm()
-//}
+}

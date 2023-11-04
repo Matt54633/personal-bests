@@ -17,7 +17,6 @@ struct WorkoutExerciseListItem: View {
             VStack(alignment: .leading) {
                 HStack {
                     Text(exercise.exerciseName)
-                        .font(.title3)
                         .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                         .fontDesign(.rounded)
                 }
@@ -25,20 +24,21 @@ struct WorkoutExerciseListItem: View {
                     Text("Sets: \(exercise.sets)")
                     Text("Reps: \(exercise.reps)")
                 }
+                .font(.system(size: 15))
                 if let exerciseInfo = exercise.info {
                     if exerciseInfo != "" {
-                        Text("Info: \(exerciseInfo)")
+                        Text("Notes: \(exerciseInfo)")
+                            .font(.system(size: 15))
                     }
                 }
             }
             Spacer()
             Text(formatWeight(exercise.weightLifted) + weightUnit)
-                .font(.largeTitle)
+                .font(.title)
                 .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 .fontDesign(.rounded)
                 .foregroundStyle(.blue)
         }
-        .padding(.leading, -15)
     }
     
     func formatWeight(_ weight: Float) -> String {

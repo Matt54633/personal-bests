@@ -9,36 +9,31 @@ import SwiftUI
 import SwiftData
 
 struct Settings: View {
-    @AppStorage("weightUnit") var weightUnit: String = "kg"
-    @State private var displaySheet: Bool = false
-    @State private var selectedUnit = "kg"
-    @Query private var exercises: [Exercise]
-    @AppStorage("userName") var name: String = ""
+    
     @Environment(\.colorScheme) var colorScheme
-
+    @AppStorage("weightUnit") var weightUnit: String = "kg"
+    @AppStorage("userName") var name: String = ""
+    @Query private var exercises: [Exercise]
+    @State private var selectedUnit = "kg"
+    
     var body: some View {
         List {
             Section(header: Text("Profile").modifier(CategoryTag())) {
                 HStack {
                     HStack {
-                        Text(name)
+                        TextField("What's your name?", text: $name)
                             .font(.title)
                             .fontDesign(.rounded)
                             .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                             .padding(.vertical, 7.5)
+                            .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
                         Spacer()
                         Image(systemName: "pencil.circle.fill")
                             .foregroundStyle(.yellow)
                             .font(.title2)
                     }
                 }
-                .onTapGesture {
-                    displaySheet = true
-                }
             }
-            .sheet(isPresented: $displaySheet, content: {
-                ProfileForm(displaySheet: $displaySheet)
-            })
             
             Section(header: Text("Preferences").modifier(CategoryTag())) {
                 NavigationLink(
@@ -76,6 +71,7 @@ struct Settings: View {
         }
         .navigationTitle("Settings")
     }
+    
     
     func convertWeights() {
         if selectedUnit == "kg" {
